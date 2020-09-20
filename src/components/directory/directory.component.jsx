@@ -48,14 +48,10 @@ class Directory extends React.Component {
     render() {
         return (
             <div className='directory-menu'>
-                {this.state.sections.map(section => 
-                    <MenuItem 
-                        key={section.id} 
-                        title={section.title} 
-                        imageUrl={section.imageUrl} 
-                        size={section.size} 
-                        linkUrl={section.linkUrl} 
-                    />
+                { /* This is using the stage 4 proposal es6 spread feature to copy the rest of the values from sections */ }
+                { /* https://github.com/tc39/proposal-object-rest-spread */ }
+                {this.state.sections.map(({ id, ...otherSectionProps }) =>
+                    <MenuItem key={id} {...otherSectionProps} />
                 )}
             </div>
         )
